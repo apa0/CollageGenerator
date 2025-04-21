@@ -1,0 +1,3 @@
+#2. This model needs to hold the user's data, right now thats just their recent tracks
+#3. From the recent tracks we want to extract things like color, key words in titles, or genre...
+#                                                   really it can get as complicated as we want
