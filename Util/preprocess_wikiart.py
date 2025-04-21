@@ -5,7 +5,7 @@ import requests
 from io import BytesIO
 
 # Load the CSV file
-df = pd.read_csv("wikiart_scraped.csv")
+df = pd.read_csv("data/wikiart_scraped.csv")
 df.columns = df.columns.str.strip()
 df = df.dropna(subset=['Link'])  # remove rows without image links
 
@@ -39,7 +39,7 @@ for _, row in df.iterrows():
         print(f"⚠️ Skipped '{row['artwork']}' due to error: {e}")
 
 # Save to a JSON file
-with open("wikiart_processed.json", "w") as f:
+with open("data/wikiart_processed.json", "w") as f:
     json.dump(artworks, f, indent=2)
 
 # After cleaning and processing your DataFrame (df)
