@@ -48,7 +48,7 @@ def recent_tracks():
         return redirect(url_for('index'))
 
     sp = spotipy.Spotify(auth=token_info['access_token'])
-    results = sp.current_user_recently_played(limit=10)
+    results = sp.current_user_recently_played(limit=40)
     tracks = []
     for item in results['items']:
         track = item['track']
