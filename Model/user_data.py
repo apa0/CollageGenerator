@@ -27,7 +27,7 @@ class SpotifyUser:
         return self.recent_tracks
 
     #Function to use Reccobeats API, following docs
-    def get_features_for_track(track_id):
+    def get_features_for_track(self, track_id):
         url = "https://api.reccobeats.com/v1/analysis/audio-features"
         payload = {
             'track_id' : track_id
@@ -36,15 +36,21 @@ class SpotifyUser:
             'Accept' : 'application/json'
         }
         try:
-            response = requests.post(url, headers=headers, files=payload)
+            response = requests.post(url, headers=headers, data=payload)
+            # This will raise an error for non-200 responses
             response.raise_for_status()
+            # Parse JSON response
             data=response.json()
             return {
-                "valance" : data.get("valence")
+                "valence" : data.get("valence"),
                 "energy" : data.get("energy")
             }
-        except Exception as e:
-            print(f"Error fetching features for track {track_id} : {e}")
+
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching features for track {track_id}: {e}")
+            return None
+        except ValueError as e:
+            print(f"Error parsing JSON for track {track_id}: {e}")
             return None
 
 
@@ -59,5 +65,5 @@ class SpotifyUser:
             if not track_id:
                 continue
             features = self.get_features_for_track(track['id'])
-            if features:
+            if features: # Update track with fetched fetures
                 track.update(features)
