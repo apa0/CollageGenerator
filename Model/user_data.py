@@ -27,33 +27,21 @@ class SpotifyUser:
         return self.recent_tracks
 
     #Function to use Reccobeats API, following docs
-    def get_features_for_track(self, track_id):
-        url = "https://api.reccobeats.com/v1/analysis/audio-features"
-        files = {
-            'track_id': (None, track_id)  # This sends it as a form field, not a file
-        }
+    def get_spotify_audio_features(track_id, access_token):
+        url = f"https://api.spotify.com/v1/audio-features/{track_id}"
         headers = {
-            'Accept' : 'application/json',
-
+            'Authorization': f'Bearer {access_token}'
         }
-        try:
-            print(f"Sending POST request to {url} with files: {files} and headers: {headers}")
-            response = requests.post(url, headers=headers, files=files)
-            print(f"Received response with status code: {response.status_code}")
-            response.raise_for_status()
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
             data = response.json()
-            print(f"Response JSON: {data}")
             return {
                 "valence": data.get("valence"),
                 "energy": data.get("energy")
             }
-        except requests.exceptions.RequestException as e:
-            print(f"Error fetching features for track {track_id}: {e}")
+        else:
+            print(f"Failed to fetch features: {response.status_code} - {response.text}")
             return None
-        except ValueError as e:
-            print(f"Error parsing JSON for track {track_id}: {e}")
-            return None
-
 
 
     #Function to store valence and energy feature from selected track
@@ -65,6 +53,6 @@ class SpotifyUser:
             track_id = track.get("id")
             if not track_id:
                 continue
-            features = self.get_features_for_track(track['id'])
+            features = self.get_spotify_audio_features(track['id'])
             if features: # Update track with fetched fetures
                 track.update(features)
