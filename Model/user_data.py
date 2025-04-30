@@ -29,23 +29,24 @@ class SpotifyUser:
     #Function to use Reccobeats API, following docs
     def get_features_for_track(self, track_id):
         url = "https://api.reccobeats.com/v1/analysis/audio-features"
-        payload = {
-            'track_id' : track_id
+        files = {
+            'track_id': (None, track_id)  # This sends it as a form field, not a file
         }
         headers = {
-            'Accept' : 'application/json'
+            'Accept' : 'application/json',
+
         }
         try:
-            response = requests.post(url, headers=headers, data=payload)
-            # This will raise an error for non-200 responses
+            print(f"Sending POST request to {url} with files: {files} and headers: {headers}")
+            response = requests.post(url, headers=headers, files=files)
+            print(f"Received response with status code: {response.status_code}")
             response.raise_for_status()
-            # Parse JSON response
-            data=response.json()
+            data = response.json()
+            print(f"Response JSON: {data}")
             return {
-                "valence" : data.get("valence"),
-                "energy" : data.get("energy")
+                "valence": data.get("valence"),
+                "energy": data.get("energy")
             }
-
         except requests.exceptions.RequestException as e:
             print(f"Error fetching features for track {track_id}: {e}")
             return None

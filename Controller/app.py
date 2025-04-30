@@ -3,6 +3,9 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import os
 from dotenv import load_dotenv
+
+from Model.user_data import SpotifyUser
+
 load_dotenv()
 
 
@@ -47,14 +50,30 @@ def recent_tracks():
     if not token_info:
         return redirect(url_for('index'))
 
-    sp = spotipy.Spotify(auth=token_info['access_token'])
-    results = sp.current_user_recently_played(limit=40)
-    tracks = []
-    for item in results['items']:
-        track = item['track']
-        tracks.append(f"{track['name']} by {track['artists'][0]['name']}")
+    #TESTING NEW LOGIC TO GATHER USER DATA:
+    # First make a SpotifyUser with token_info
+    user = SpotifyUser(token_info)
+    #Next fetch recent tracks from Spotify, 10 recent tracks for testing
+    recent_tracks= user.fetch_recent_tracks(limit=10)
+    #Now fetch audio features for each track
+    user.fetch_audio_features()
+    # Prepare a response to show recent tracks with their audio features
+    track_details = []
+    for track in user.recent_tracks:
+        track_details.append(f"{track['name']} by {track['artist']}, "
+                             f"Valence: {track.get('valence')}, Energy: {track.get('energy')}")
 
-    return "<br>".join(tracks)
+    return "<br>".join(track_details)
+
+
+    #sp = spotipy.Spotify(auth=token_info['access_token'])
+    #results = sp.current_user_recently_played(limit=40)
+    #tracks = []
+    #for item in results['items']:
+     #   track = item['track']
+      #  tracks.append(f"{track['name']} by {track['artists'][0]['name']}")
+
+    #return "<br>".join(tracks)
 
 
 #Will need a /collage where we generate and show the image collage 
