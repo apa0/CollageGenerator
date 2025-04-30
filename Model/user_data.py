@@ -3,6 +3,7 @@
 #                                                   really it can get as complicated as we want
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
+import requests
 
 class SpotifyUser:
     def __init__(self, token_info):
@@ -25,10 +26,38 @@ class SpotifyUser:
         ]
         return self.recent_tracks
 
-    def extract_features(self):
-        # pull genres, keywords, or colors, etc.
-        return {
-            'genres': [],
-            'keywords': [],
-            'colors': []
+    #Function to use Reccobeats API, following docs
+    def get_features_for_track(track_id):
+        url = "https://api.reccobeats.com/v1/analysis/audio-features"
+        payload = {
+            'track_id' : track_id
         }
+        headers = {
+            'Accept' : 'application/json'
+        }
+        try:
+            response = requests.post(url, headers=headers, files=payload)
+            response.raise_for_status()
+            data=response.json()
+            return {
+                "valance" : data.get("valence")
+                "energy" : data.get("energy")
+            }
+        except Exception as e:
+            print(f"Error fetching features for track {track_id} : {e}")
+            return None
+
+
+
+    #Function to store valence and energy feature from selected track
+    #Spotify API audio_features is deprecated, so using alternative Reccobeats
+    #Focusing on valence and energy for best, specialized data for collage:
+    # If you want to learn more about other fields: https://reccobeats.com/docs/apis/extract-audio-features
+    def fetch_audio_features(self):
+        for track in self.recent_tracks:
+            track_id = track.get("id")
+            if not track_id:
+                continue
+            features = self.get_features_for_track(track['id'])
+            if features:
+                track.update(features)
