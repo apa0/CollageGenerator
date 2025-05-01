@@ -4,6 +4,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import os
 from dotenv import load_dotenv
 
+from Controller.configure import scope
 from Model.user_data import SpotifyUser
 
 load_dotenv()
@@ -19,8 +20,7 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
-#Currently fetching recently played tracks (could add user-library-read" or "user-top-read"
-scope = "user-read-recently-played"
+
 
 #Handles authentication, when the user initially visits the URL
 @app.route('/')

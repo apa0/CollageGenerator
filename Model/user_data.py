@@ -1,9 +1,17 @@
 #2. This model needs to hold the user's data, right now thats just their recent tracks
 #3. From the recent tracks we want to extract things like color, key words in titles, or genre...
 #                                                   really it can get as complicated as we want
+
+# Major problem: Spotify has deprecated their get_audio access from the API, so no energy, danceablity, etc.
+# also deprecated the 30 sec preview of the track, so can't do some audio extraction there
+# And i also tried to use an external API: reccobeats to no success
+# BUT since we are focused on the track, we can work with the album cover for now
+# And then we will try to incorporate / fix using an external api
+
+
 import spotipy
-from spotipy.oauth2 import SpotifyOAuth
-import requests
+import colorthief
+
 
 class SpotifyUser:
     def __init__(self, token_info):
@@ -25,34 +33,3 @@ class SpotifyUser:
             for item in results['items']
         ]
         return self.recent_tracks
-
-    #Function to use Reccobeats API, following docs
-    def get_spotify_audio_features(track_id, access_token):
-        url = f"https://api.spotify.com/v1/audio-features/{track_id}"
-        headers = {
-            'Authorization': f'Bearer {access_token}'
-        }
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            data = response.json()
-            return {
-                "valence": data.get("valence"),
-                "energy": data.get("energy")
-            }
-        else:
-            print(f"Failed to fetch features: {response.status_code} - {response.text}")
-            return None
-
-
-    #Function to store valence and energy feature from selected track
-    #Spotify API audio_features is deprecated, so using alternative Reccobeats
-    #Focusing on valence and energy for best, specialized data for collage:
-    # If you want to learn more about other fields: https://reccobeats.com/docs/apis/extract-audio-features
-    def fetch_audio_features(self):
-        for track in self.recent_tracks:
-            track_id = track.get("id")
-            if not track_id:
-                continue
-            features = self.get_spotify_audio_features(track['id'])
-            if features: # Update track with fetched fetures
-                track.update(features)
