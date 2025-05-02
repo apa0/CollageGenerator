@@ -51,19 +51,26 @@ def recent_tracks():
         return redirect(url_for('index'))
 
     #TESTING NEW LOGIC TO GATHER USER DATA:
-    # First make a SpotifyUser with token_info
     user = SpotifyUser(token_info)
-    #Next fetch recent tracks from Spotify, 10 recent tracks for testing
-    recent_tracks= user.fetch_recent_tracks(limit=10)
-    #Now fetch audio features for each track
-    user.fetch_audio_features()
-    # Prepare a response to show recent tracks with their audio features
-    track_details = []
-    for track in user.recent_tracks:
-        track_details.append(f"{track['name']} by {track['artist']}, "
-                             f"Valence: {track.get('valence')}, Energy: {track.get('energy')}")
+    recent_music = user.fetch_recent_tracks(limit=10)
 
-    return "<br>".join(track_details)
+    # Build a simple HTML display of track info + colors
+    html = "<h2>Recent Tracks with Color Analysis</h2>"
+    for track in recent_music:
+        html += f"""
+                <div style='margin-bottom: 30px;'>
+                    <img src="{track['album_image_url']}" style="width: 100px;"><br>
+                    <strong>{track['name']}</strong> by {track['artist']}<br>
+                    Genre: {track['genres']}<br>  <!-- Display genre here -->
+                    Dominant Color: <div style='width: 20px; height: 20px; background-color: rgb{track['dominant_color']}; display: inline-block;'></div> {track['dominant_color']}<br>
+                    Color Palette:<br>
+            """
+        for color in track['color_palette']:
+            html += f"<div style='width: 20px; height: 20px; background-color: rgb{color}; display: inline-block; margin-right: 5px;'></div>"
+        html += "</div>"
+
+    return html
+
 
 
     #sp = spotipy.Spotify(auth=token_info['access_token'])
