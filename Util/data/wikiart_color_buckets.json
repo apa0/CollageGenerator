@@ -1,0 +1,1146 @@
+{
+  "(0, 0, 0)": [
+    {
+      "image_url": "https://uploads3.wikiart.org/00265/images/ancient-egyptian-painting/narmer-palette.jpg",
+      "style": "Early-Dynastic",
+      "title": "Narmer Palette",
+      "palette": [
+        [
+          16,
+          16,
+          18
+        ],
+        [
+          197,
+          201,
+          205
+        ],
+        [
+          125,
+          129,
+          136
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads8.wikiart.org/00244/images/ancient-egyptian-painting/main-image-1.jpg",
+      "style": "New-Kingdom",
+      "title": "Artist's Sketches of Senenmut",
+      "palette": [
+        [
+          199,
+          191,
+          176
+        ],
+        [
+          33,
+          28,
+          29
+        ],
+        [
+          175,
+          165,
+          148
+        ]
+      ]
+    }
+  ],
+  "(160, 120, 40)": [
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/box-inlay-with-a-geometric-pattern-ca-3100-2900-b-c.jpg",
+      "style": "Early-Dynastic",
+      "title": "Box Inlay with a Geometric Pattern",
+      "palette": [
+        [
+          167,
+          133,
+          54
+        ],
+        [
+          235,
+          219,
+          180
+        ],
+        [
+          83,
+          54,
+          6
+        ]
+      ]
+    }
+  ],
+  "(40, 40, 40)": [
+    {
+      "image_url": "https://uploads2.wikiart.org/00305/images/ancient-egyptian-painting/330px-khafre-statue.jpg",
+      "style": "Old-Kingdom",
+      "title": "Khafre Enthroned",
+      "palette": [
+        [
+          70,
+          70,
+          62
+        ],
+        [
+          208,
+          194,
+          184
+        ],
+        [
+          154,
+          149,
+          143
+        ]
+      ]
+    }
+  ],
+  "(120, 80, 80)": [
+    {
+      "image_url": "https://uploads7.wikiart.org/00305/images/ancient-egyptian-painting/louvre-stele-roi-serpent.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Stele of the Serpent King (Stela of Djet)",
+      "palette": [
+        [
+          129,
+          118,
+          108
+        ],
+        [
+          217,
+          208,
+          196
+        ],
+        [
+          201,
+          180,
+          161
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/relief-fragment-showing-a-pile-of-offerings-and-part-of-an-offering-list-ca-2010-2000-b-c-or-ca-2000.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Relief Fragment Showing a Pile of Offerings and Part of An Offering List",
+      "palette": [
+        [
+          131,
+          118,
+          101
+        ],
+        [
+          211,
+          209,
+          203
+        ],
+        [
+          45,
+          32,
+          14
+        ]
+      ]
+    }
+  ],
+  "(160, 120, 80)": [
+    {
+      "image_url": "https://uploads8.wikiart.org/00244/images/ancient-egyptian-painting/laden-donkeys-and-ploughing-tomb-of-djar-ca-2060-2010-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Laden Donkeys and Ploughing, Tomb of Djar",
+      "palette": [
+        [
+          170,
+          141,
+          84
+        ],
+        [
+          62,
+          50,
+          35
+        ],
+        [
+          193,
+          180,
+          157
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/falcon-protecting-the-king-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Falcon Protecting the King",
+      "palette": [
+        [
+          175,
+          156,
+          117
+        ],
+        [
+          54,
+          73,
+          65
+        ],
+        [
+          166,
+          106,
+          41
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads4.wikiart.org/00244/images/ancient-egyptian-painting/men-from-punt-carrying-gifts-tomb-of-rekhmire-ca-1479-1420-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Men from Punt Carrying Gifts, Tomb of Rekhmire",
+      "palette": [
+        [
+          183,
+          150,
+          98
+        ],
+        [
+          112,
+          66,
+          35
+        ],
+        [
+          221,
+          205,
+          178
+        ]
+      ]
+    }
+  ],
+  "(200, 160, 120)": [
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/women-preparing-food-tomb-of-djari-ca-2060-2010-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Women Preparing Food, Tomb of Djari",
+      "palette": [
+        [
+          212,
+          192,
+          145
+        ],
+        [
+          74,
+          74,
+          62
+        ],
+        [
+          148,
+          88,
+          61
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/sifting-meal-tomb-of-rekhmire-ca-1504-1425-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Sifting Meal, Tomb of Rekhmire",
+      "palette": [
+        [
+          213,
+          194,
+          159
+        ],
+        [
+          168,
+          84,
+          50
+        ],
+        [
+          199,
+          112,
+          61
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/measuring-and-recording-the-harvest-2.jpg",
+      "style": "New-Kingdom",
+      "title": "Measuring and Recording the Harvest",
+      "palette": [
+        [
+          207,
+          185,
+          141
+        ],
+        [
+          65,
+          77,
+          65
+        ],
+        [
+          205,
+          109,
+          46
+        ]
+      ]
+    }
+  ],
+  "(200, 160, 160)": [
+    {
+      "image_url": "https://uploads0.wikiart.org/00244/images/ancient-egyptian-painting/stela-of-a-man-ca-2030-1981-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Stela of a Man",
+      "palette": [
+        [
+          35,
+          32,
+          32
+        ],
+        [
+          214,
+          199,
+          184
+        ],
+        [
+          168,
+          166,
+          170
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/dt1534.jpg",
+      "style": "New-Kingdom",
+      "title": "Artist's Gridded Sketch of Senenmut",
+      "palette": [
+        [
+          219,
+          194,
+          170
+        ],
+        [
+          41,
+          39,
+          38
+        ],
+        [
+          129,
+          105,
+          83
+        ]
+      ]
+    }
+  ],
+  "(80, 80, 40)": [
+    {
+      "image_url": "https://uploads5.wikiart.org/00244/images/ancient-egyptian-painting/stela-of-intef-and-his-wife-dedetamun-ca-1981-1802-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Stela of Intef and His Wife, Dedetamun",
+      "palette": [
+        [
+          92,
+          85,
+          79
+        ],
+        [
+          210,
+          173,
+          137
+        ],
+        [
+          33,
+          31,
+          29
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads1.wikiart.org/00244/images/ancient-egyptian-painting/hunting-and-fishing-wild-ducks-2.jpg",
+      "style": "New-Kingdom",
+      "title": "Hunting and Fishing, Wild Ducks",
+      "palette": [
+        [
+          105,
+          95,
+          77
+        ],
+        [
+          186,
+          173,
+          155
+        ],
+        [
+          25,
+          16,
+          13
+        ]
+      ]
+    }
+  ],
+  "(200, 200, 200)": [
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/scarab-with-the-name-of-amenemhat-iii-and-a-hippopotamus-hunt-ca-1859-1749-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Scarab with the Name of Amenemhat III and a Hippopotamus Hunt",
+      "palette": [
+        [
+          223,
+          223,
+          223
+        ],
+        [
+          29,
+          98,
+          101
+        ],
+        [
+          127,
+          165,
+          165
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads1.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-the-throne-name-of-thutmose-i-ca-1504-1492-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with the Throne Name of Thutmose I",
+      "palette": [
+        [
+          106,
+          74,
+          28
+        ],
+        [
+          231,
+          230,
+          226
+        ],
+        [
+          170,
+          133,
+          72
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-the-throne-name-of-thutmose-i-ca-1504-1492-b-c-1.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with the Throne Name of Thutmose I",
+      "palette": [
+        [
+          229,
+          227,
+          221
+        ],
+        [
+          75,
+          46,
+          18
+        ],
+        [
+          133,
+          93,
+          41
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/scarab-ca-1479-1458-b-c-1.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab",
+      "palette": [
+        [
+          23,
+          92,
+          103
+        ],
+        [
+          221,
+          221,
+          220
+        ],
+        [
+          128,
+          158,
+          162
+        ]
+      ]
+    }
+  ],
+  "(240, 240, 240)": [
+    {
+      "image_url": "https://uploads4.wikiart.org/00244/images/ancient-egyptian-painting/scarab-of-the-king-s-mother-queen-nebuhetepti-ca-1802-1640-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Scarab of the King's Mother Queen Nebuhetepti",
+      "palette": [
+        [
+          76,
+          107,
+          97
+        ],
+        [
+          248,
+          249,
+          248
+        ],
+        [
+          149,
+          170,
+          153
+        ]
+      ]
+    }
+  ],
+  "(40, 80, 80)": [
+    {
+      "image_url": "https://uploads1.wikiart.org/00244/images/ancient-egyptian-painting/scarab-ca-1850-1640-b-c.jpg",
+      "style": "Middle-Kingdom",
+      "title": "Scarab",
+      "palette": [
+        [
+          230,
+          233,
+          229
+        ],
+        [
+          72,
+          103,
+          90
+        ],
+        [
+          132,
+          136,
+          106
+        ]
+      ]
+    }
+  ],
+  "(200, 200, 160)": [
+    {
+      "image_url": "https://uploads7.wikiart.org/00244/images/ancient-egyptian-painting/fragmentary-scene-of-foreigners-tomb-of-senenmut-original-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Fragmentary Scene of Foreigners, Tomb of Senenmut",
+      "palette": [
+        [
+          227,
+          206,
+          167
+        ],
+        [
+          48,
+          52,
+          49
+        ],
+        [
+          231,
+          229,
+          215
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/artist-s-painting-of-a-hippopotamus-ca-1479-1425-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Artist's Painting of a Hippopotamus",
+      "palette": [
+        [
+          206,
+          200,
+          195
+        ],
+        [
+          77,
+          58,
+          54
+        ],
+        [
+          120,
+          120,
+          120
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads7.wikiart.org/00244/images/ancient-egyptian-painting/offerings-1.jpg",
+      "style": "New-Kingdom",
+      "title": "Offerings",
+      "palette": [
+        [
+          43,
+          35,
+          32
+        ],
+        [
+          224,
+          216,
+          208
+        ],
+        [
+          120,
+          63,
+          50
+        ]
+      ]
+    }
+  ],
+  "(160, 160, 120)": [
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/kheker-friese-tomb-of-tjay-ca-1550-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Kheker Friese, Tomb of Tjay",
+      "palette": [
+        [
+          191,
+          172,
+          143
+        ],
+        [
+          48,
+          93,
+          104
+        ],
+        [
+          150,
+          69,
+          29
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads4.wikiart.org/00244/images/ancient-egyptian-painting/man-carrying-loaves-tomb-of-rekhmire-ca-1504-1425-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Man Carrying Loaves, Tomb of Rekhmire",
+      "palette": [
+        [
+          175,
+          160,
+          127
+        ],
+        [
+          153,
+          83,
+          45
+        ],
+        [
+          154,
+          98,
+          67
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/girl-with-flowers-3.jpg",
+      "style": "New-Kingdom",
+      "title": "Girl with Flowers",
+      "palette": [
+        [
+          175,
+          166,
+          150
+        ],
+        [
+          26,
+          18,
+          16
+        ],
+        [
+          100,
+          61,
+          46
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads5.wikiart.org/00244/images/ancient-egyptian-painting/portrait-of-a-lady.jpg",
+      "style": "New-Kingdom",
+      "title": "Portrait of a Lady",
+      "palette": [
+        [
+          36,
+          20,
+          13
+        ],
+        [
+          191,
+          178,
+          151
+        ],
+        [
+          102,
+          66,
+          45
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/mother-with-child-1.jpg",
+      "style": "New-Kingdom",
+      "title": "Mother with Child",
+      "palette": [
+        [
+          188,
+          177,
+          160
+        ],
+        [
+          69,
+          42,
+          33
+        ],
+        [
+          104,
+          66,
+          50
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads1.wikiart.org/00244/images/ancient-egyptian-painting/menna-and-family-hunting-in-the-marshes-2.jpg",
+      "style": "New-Kingdom",
+      "title": "Menna and Family Hunting in the Marshes",
+      "palette": [
+        [
+          200,
+          187,
+          152
+        ],
+        [
+          49,
+          52,
+          41
+        ],
+        [
+          148,
+          104,
+          60
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/harvest-scenes-5.jpg",
+      "style": "New-Kingdom",
+      "title": "Harvest Scenes",
+      "palette": [
+        [
+          201,
+          187,
+          158
+        ],
+        [
+          15,
+          15,
+          15
+        ],
+        [
+          143,
+          72,
+          52
+        ]
+      ]
+    }
+  ],
+  "(80, 120, 80)": [
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-the-name-maatkare-over-a-papyrus-thicket-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with the Name Maatkare",
+      "palette": [
+        [
+          97,
+          139,
+          101
+        ],
+        [
+          217,
+          222,
+          207
+        ],
+        [
+          47,
+          60,
+          35
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads5.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-the-name-maatkare-hatshepsut-flanked-by-two-falcons-one-proffering-an-ankh-ca.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with the Name Maatkare (Hatshepsut) Flanked by Two Falcons, One Proffering An Ankh",
+      "palette": [
+        [
+          113,
+          137,
+          93
+        ],
+        [
+          215,
+          216,
+          190
+        ],
+        [
+          46,
+          51,
+          23
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads1.wikiart.org/00244/images/ancient-egyptian-painting/scarab-with-lion-headed-goddess-protecting-maatkare-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab with Lion Headed Goddess Protecting Maatkare",
+      "palette": [
+        [
+          95,
+          145,
+          114
+        ],
+        [
+          213,
+          222,
+          208
+        ],
+        [
+          48,
+          63,
+          36
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads7.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-king-of-upper-and-lower-egypt-ca-1479-1458-b-c-1.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed King of Upper and Lower Egypt",
+      "palette": [
+        [
+          112,
+          144,
+          101
+        ],
+        [
+          215,
+          222,
+          204
+        ],
+        [
+          61,
+          63,
+          33
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads1.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-a-hieroglyphic-motif-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with a Hieroglyphic Motif",
+      "palette": [
+        [
+          108,
+          143,
+          111
+        ],
+        [
+          215,
+          218,
+          205
+        ],
+        [
+          52,
+          58,
+          35
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads0.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-a-geometric-pattern-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with a Geometric Pattern",
+      "palette": [
+        [
+          118,
+          153,
+          111
+        ],
+        [
+          219,
+          224,
+          206
+        ],
+        [
+          27,
+          47,
+          20
+        ]
+      ]
+    }
+  ],
+  "(160, 120, 120)": [
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/offerings-tomb-of-nebamun-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Offerings, Tomb of Nebamun",
+      "palette": [
+        [
+          187,
+          162,
+          134
+        ],
+        [
+          65,
+          85,
+          76
+        ],
+        [
+          170,
+          96,
+          41
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads0.wikiart.org/00244/images/ancient-egyptian-painting/bearer-with-antelope-4.jpg",
+      "style": "New-Kingdom",
+      "title": "Bearer with Antelope",
+      "palette": [
+        [
+          170,
+          156,
+          130
+        ],
+        [
+          77,
+          41,
+          31
+        ],
+        [
+          35,
+          20,
+          18
+        ]
+      ]
+    }
+  ],
+  "(40, 80, 40)": [
+    {
+      "image_url": "https://uploads0.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-the-name-maatkare-hatshepsut-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with the Name Maatkare (Hatshepsut)",
+      "palette": [
+        [
+          67,
+          102,
+          72
+        ],
+        [
+          244,
+          244,
+          243
+        ],
+        [
+          130,
+          146,
+          107
+        ]
+      ]
+    }
+  ],
+  "(120, 120, 80)": [
+    {
+      "image_url": "https://uploads8.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-lord-of-the-two-lands-maatkare-hatshepsut-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed Lord of the Two Lands Maatkare (Hatshepsut)",
+      "palette": [
+        [
+          122,
+          144,
+          94
+        ],
+        [
+          52,
+          60,
+          23
+        ],
+        [
+          226,
+          227,
+          209
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads5.wikiart.org/00244/images/ancient-egyptian-painting/harvest-scenes-1-4.jpg",
+      "style": "New-Kingdom",
+      "title": "Harvest Scenes",
+      "palette": [
+        [
+          156,
+          129,
+          101
+        ],
+        [
+          122,
+          72,
+          35
+        ],
+        [
+          101,
+          49,
+          22
+        ]
+      ]
+    }
+  ],
+  "(40, 120, 80)": [
+    {
+      "image_url": "https://uploads8.wikiart.org/00244/images/ancient-egyptian-painting/scarab-inscribed-with-the-name-of-the-god-amun-re-ca-1479-1458-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Scarab Inscribed with the Name of the God Amun Re",
+      "palette": [
+        [
+          71,
+          133,
+          108
+        ],
+        [
+          208,
+          218,
+          208
+        ],
+        [
+          20,
+          50,
+          34
+        ]
+      ]
+    }
+  ],
+  "(200, 120, 80)": [
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/drilling-a-stone-vase-tomb-of-rekhmire-ca-1504-1425-b-c.jpg",
+      "style": "New-Kingdom",
+      "title": "Drilling a Stone Vase, Tomb of Rekhmire",
+      "palette": [
+        [
+          205,
+          163,
+          113
+        ],
+        [
+          128,
+          55,
+          17
+        ],
+        [
+          229,
+          210,
+          186
+        ]
+      ]
+    }
+  ],
+  "(120, 120, 120)": [
+    {
+      "image_url": "https://uploads3.wikiart.org/00244/images/ancient-egyptian-painting/fish-swimming-into-menna-s-spear-2.jpg",
+      "style": "New-Kingdom",
+      "title": "Fish Swimming into Menna's Spear",
+      "palette": [
+        [
+          157,
+          143,
+          123
+        ],
+        [
+          25,
+          24,
+          20
+        ],
+        [
+          98,
+          52,
+          41
+        ]
+      ]
+    }
+  ],
+  "(160, 160, 160)": [
+    {
+      "image_url": "https://uploads8.wikiart.org/00244/images/ancient-egyptian-painting/hunting-and-fishing-cat-and-ichneumon-3.jpg",
+      "style": "New-Kingdom",
+      "title": "Hunting and Fishing, Cat and Ichneumon",
+      "palette": [
+        [
+          175,
+          177,
+          169
+        ],
+        [
+          38,
+          40,
+          40
+        ],
+        [
+          88,
+          52,
+          52
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/menna-s-daughter-offering-to-her-parents-3.jpg",
+      "style": "New-Kingdom",
+      "title": "Menna's Daughter Offering to Her Parents",
+      "palette": [
+        [
+          199,
+          186,
+          169
+        ],
+        [
+          72,
+          66,
+          58
+        ],
+        [
+          176,
+          101,
+          58
+        ]
+      ]
+    },
+    {
+      "image_url": "https://uploads2.wikiart.org/00244/images/ancient-egyptian-painting/hunting-and-fishing-detail-the-hunter-s-daughter-1422-1411-3.jpg",
+      "style": "New-Kingdom",
+      "title": "Hunting and Fishing, Detail. The Hunter's Daughter",
+      "palette": [
+        [
+          200,
+          193,
+          186
+        ],
+        [
+          37,
+          24,
+          20
+        ],
+        [
+          130,
+          83,
+          57
+        ]
+      ]
+    }
+  ],
+  "(200, 200, 120)": [
+    {
+      "image_url": "https://uploads6.wikiart.org/00244/images/ancient-egyptian-painting/funeral-procession-to-abydos-a-similar-funerary-boat-is-believed-to-have-carried-the-body-of-menna-3.jpg",
+      "style": "New-Kingdom",
+      "title": "Funeral Procession to Abydos, a Similar Funerary Boat is Believed to Have Carried the Body of Menna and His Wife to Abydos, the Place Consecrated to the God Osiris",
+      "palette": [
+        [
+          222,
+          210,
+          156
+        ],
+        [
+          68,
+          56,
+          30
+        ],
+        [
+          129,
+          75,
+          35
+        ]
+      ]
+    }
+  ]
+}
