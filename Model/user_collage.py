@@ -14,14 +14,26 @@
 
 
 class CollageGenerator:
+
+    # All we need to initialize is the collection for the collage, starting we will do 1 image per track (can expand later)
     def __init__(self, user_features, wikiart_data):
         self.user_features = user_features
         self.wikiart_data = wikiart_data
 
+
+    #This is the main function that generates the collage
+    # Still thinking: will call user_data to access the track data via a getter, or pass something into the function to avoid calls?
+    # Here is where we will utilize the color buckets, then search thru that key value using pallate colors (later could add genre/style logic)
+    # To generate the best match for the collage, once we have determine that for the track, we add that art work into the collection
+    # We do this until we have taken care of all of the user tracks (maybe theres a more efficient way, what if later someone wants this for a playlist?)
+    # still: a playlist doesnt mean we have to generate an image for each track, we could end up only taking in distinct color tracks and making same size collage
+    # Again these are just train of thought comments to aid development
     def match_images(self):
         # algorithm to select 6 images
         return ["img1.jpg", "img2.jpg", ...]
 
+
+# Maybe just make this data that the controller (app.py) can access and then print to the view via HTML
     def generate_collage(self):
         # generate final collage image
         return "collage.jpg"
