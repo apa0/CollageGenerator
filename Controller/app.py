@@ -54,6 +54,8 @@ def recent_tracks():
     user = SpotifyUser(token_info)
     recent_music = user.fetch_recent_tracks(limit=10)
 
+
+
     # Build a simple HTML display of track info + colors
     html = "<h2>Recent Tracks with Color Analysis</h2>"
     for track in recent_music:
