@@ -3,6 +3,10 @@
 #5. Has a function to return the collage to the Controller, which then passes it to the view...
 #                                                   (which we dont have right now but thats fine)
 
+import Model
+from Model.user_data import SpotifyUser
+
+
 
 # Update: Now that we know exactly what user data we are working with, we can clear up our approach to making matches
 
@@ -30,6 +34,10 @@ class CollageGenerator:
     # Again these are just train of thought comments to aid development
     def match_images(self):
         # algorithm to select 6 images
+
+
+
+
         return ["img1.jpg", "img2.jpg", ...]
 
 

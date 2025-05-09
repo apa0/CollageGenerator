@@ -21,7 +21,7 @@ class SpotifyUser:
     def __init__(self, token_info):
         self.token_info = token_info
         self.sp = spotipy.Spotify(auth=token_info['access_token'])
-        self.recent_tracks = []
+        self.recent_tracks = self.fetch_recent_tracks()
 
     #Limit 10 for now, testing
     def fetch_recent_tracks(self, limit=10):
