@@ -1,3 +1,5 @@
+from re import match
+
 from flask import Flask, request, redirect, session, url_for
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -5,6 +7,7 @@ import os
 from dotenv import load_dotenv
 
 from Controller.configure import scope
+from Model.user_collage import match_images_to_tracks, generate_collage_html
 from Model.user_data import SpotifyUser
 
 load_dotenv()
@@ -71,8 +74,26 @@ def recent_tracks():
             html += f"<div style='width: 20px; height: 20px; background-color: rgb{color}; display: inline-block; margin-right: 5px;'></div>"
         html += "</div>"
 
+        html += """
+            <form action="/collage" method="get">
+                <button type="submit" style="padding: 10px 20px; font-size: 16px;">🎨 Generate Collage</button>
+            </form>
+        """
+
     return html
 
+@app.route('/collage')
+def collage():
+
+    token_info = session.get("token_info", None)
+    if not token_info:
+        return redirect(url_for('index'))
+    user = SpotifyUser(token_info)
+    user_tracks = user.fetch_recent_tracks(limit=10)
+    matched_tracks = match_images_to_tracks(user_tracks)
+    collage_html=generate_collage_html(matched_tracks)
+
+    return collage_html
 
 
     #sp = spotipy.Spotify(auth=token_info['access_token'])

@@ -56,13 +56,29 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_color_buc
         matched_tracks.append(track)
     return matched_tracks
 
-def generate_collage_image(matched_tracks, out_file="collage.jpg"):
+def generate_collage_html(matched_tracks):
+    html = "<h2>Track-to-Art Collage</h2>"
+    for track in matched_tracks:
+        html += f"""
+            <div style='margin-bottom: 30px;'>
+                <img src="{track['album_image_url']}" style="width: 100px;'><br>
+                <strong>{track['name']}</strong> by {track['artist']}<br>
+                Dominant Color: <div style='width: 20px; height: 20px; background-color: {track['dominant_color']}; display: inline-block;'></div> {track['dominant_color']}<br>
+        """
+        if 'matched_artwork' in track and track['matched_artwork']:
+            html += f"""
+                Matched Artwork:<br>
+                <img src="{track['matched_artwork']}" style="width: 150px;'><br>
+            """
+        else:
+            html += "No artwork matched.<br>"
 
+        html += "<div style='margin-top: 10px;'>Palette:<br>"
+        for color in track['color_palette']:
+            html += f"<div style='width: 20px; height: 20px; background-color: {color}; display: inline-block; margin-right: 5px;'></div>"
+        html += "</div></div>"
 
+    return html
 
-
-
-
-
-
+#Can later add a function the allow user to save or download their image collage
 
