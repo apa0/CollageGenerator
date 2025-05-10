@@ -5,7 +5,7 @@
 
 import json
 import random
-from Util.color_buckets import color_buckets
+
 
 
 
@@ -17,10 +17,23 @@ from Util.color_buckets import color_buckets
     # 3. Once we have narrowed this down, we can use the top three colors in the pallete to give us the closest match
     # 4. Can later integrate better algorithms like KD-Trees or ANN (approximate nearest neighbors)
 
+import ast
+
+def parse_color_key(color_key):
+    try:
+        return ast.literal_eval(color_key)  # Turns "(0, 0, 0)" into (0, 0, 0)
+    except Exception as e:
+        raise ValueError(f"Invalid color bucket key format: {color_key}") from e
+
 
 # Function that takes in the dominant color of a track and treat it as a point, hex to RGB integers
 def hex_to_rgb(hexstr):
-    return tuple(int(hexstr[i:i+2], 16) for i in (1,3,5))
+    if isinstance(hexstr, str) and hexstr.startswith('#') and len(hexstr) == 7:
+        return tuple(int(hexstr[i:i+2], 16) for i in (1, 3, 5))
+    elif isinstance(hexstr, (tuple, list)) and len(hexstr) == 3 and all(isinstance(c, int) for c in hexstr):
+        return tuple(hexstr)  # Already an RGB triplet
+    else:
+        raise ValueError(f"Unexpected color format: {hexstr}")
 
 #Function that uses Euclidean distance to find the best bucket match in WikiArt for a track
 # Right now only using the dominant color to determine best bucket, later can incorporate pallates for specific image
@@ -29,12 +42,15 @@ def get_closest_color_bucket(track_color, color_buckets):
     min_dist_sq = float('inf')
     best_bucket = None
 
-    for bucket_hex in color_buckets:
-        r2, g2, b2 = hex_to_rgb(bucket_hex)
+    for bucket_key in color_buckets:
+        try:
+            r2, g2, b2 = parse_color_key(bucket_key)  # ✅ Safely convert string to tuple
+        except ValueError as e:
+            continue  # or log the error
         dist_sq = (r1 - r2)**2 + (g1 - g2)**2 + (b1 - b2)**2
         if dist_sq < min_dist_sq:
             min_dist_sq = dist_sq
-            best_bucket = bucket_hex
+            best_bucket = bucket_key
     return best_bucket
 
 def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_color_buckets.json'):
@@ -43,17 +59,17 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_color_buc
 
     matched_tracks = []
     for track in user_tracks:
-        # Check format here to match: '#RRGGBB'
-        dom_color=track['dominant_color']
+        dom_color = track['dominant_color']  # already an RGB tuple
         best_bucket = get_closest_color_bucket(dom_color, color_buckets)
+
         if best_bucket and color_buckets[best_bucket]:
-            # Right now, I am picking a random art work out of the best bucket
-            # Come back to instead call another helper function that does Eulerian distance
-            # By looping through and averaging the top 3 palletes to find best match
-            matched_art=random.choice(color_buckets[best_bucket])
-        else: # If nothing was found
+            matched_art = random.choice(color_buckets[best_bucket])
+            track['matched_artwork'] = matched_art
+        else:
             track['matched_artwork'] = None
+
         matched_tracks.append(track)
+
     return matched_tracks
 
 def generate_collage_html(matched_tracks):
