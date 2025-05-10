@@ -88,6 +88,10 @@ def collage():
     user_tracks = user.fetch_recent_tracks(limit=10)
     matched_tracks = match_images_to_tracks(user_tracks)
 
+    # 🔍 Debugging: print matched artwork URLs
+    for i, track in enumerate(matched_tracks):
+        print(f"Track {i}: {track.get('name', 'N/A')} - matched_artwork: {track.get('matched_artwork')}")
+
     # Render using Jinja2 template
     return render_template("collage.html", matched_tracks=matched_tracks)
 

@@ -1,31 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Track-to-Art Collage</title>
+    <meta charset="UTF-8">
+    <title>Your Art Collage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 40px;
+        }
+        .art-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .art-grid img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <h2>Track-to-Art Collage</h2>
-    {% for track in tracks %}
-        <div style='margin-bottom: 30px;'>
-            <img src="{{ track.album_image_url }}" style="width: 100px;"><br>
-            <strong>{{ track.name }}</strong> by {{ track.artist }}<br>
-            Dominant Color:
-            <div style='width: 20px; height: 20px; background-color: {{ track.dominant_color }}; display: inline-block;'></div>
-            {{ track.dominant_color }}<br>
-
+    <h1>Your Matched Art Collage</h1>
+    <div class="art-grid">
+        {% for track in matched_tracks %}
             {% if track.matched_artwork %}
-                Matched Artwork:<br>
-                <img src="{{ track.matched_artwork }}" style="width: 150px;"><br>
-            {% else %}
-                No artwork matched.<br>
+                <img src="{{ track.matched_artwork }}" alt="Artwork">
             {% endif %}
-
-            <div style='margin-top: 10px;'>Palette:<br>
-                {% for color in track.color_palette %}
-                    <div style='width: 20px; height: 20px; background-color: {{ color }}; display: inline-block; margin-right: 5px;'></div>
-                {% endfor %}
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </body>
 </html>
+
