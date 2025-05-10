@@ -14,7 +14,7 @@ def quantize_color(color, step=40):
 
 
 # Load processed artwork data
-with open("data/wikiart_processed.json", "r") as f:
+with open("data/wikiart_stratify_processed.json", "r") as f:
     artworks = json.load(f)
 
 # Initialize the hashmap: keys are dominant colors (as strings for JSON compatibility), values are lists of artworks
@@ -36,7 +36,7 @@ for art in artworks:
     color_buckets[str(dominant_color)].append(entry)  # Store with stringified color as key
 
 # Save the hashmap to a new JSON file
-with open("data/wikiart_color_buckets.json", "w") as f:
+with open("data/wikiart_stratify_color_buckets.json", "w") as f:
     json.dump(color_buckets, f, indent=2)
 
 print("✅ Hashmap of artworks bucketed by dominant color has been saved.")

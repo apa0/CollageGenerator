@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 
 from Controller.configure import scope
-from Util.user_collage import match_images_to_tracks, generate_collage_html
+from Util.user_collage import match_images_to_tracks
 from Model.user_data import SpotifyUser
 
 load_dotenv()
