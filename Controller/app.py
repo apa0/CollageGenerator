@@ -52,18 +52,18 @@ def recent_tracks():
 
     #TESTING NEW LOGIC TO GATHER USER DATA:
     user = SpotifyUser(token_info)
-    recent_music = user.fetch_recent_tracks(limit=10)
+    recent_music = user.fetch_recent_tracks(limit=16)
 
     return render_template('recent_tracks.html', recent_music=recent_music)
 
 @app.route('/collage')
 def collage():
-
+    # Factor out common code
     token_info = session.get("token_info", None)
     if not token_info:
         return redirect(url_for('index'))
     user = SpotifyUser(token_info)
-    user_tracks = user.fetch_recent_tracks(limit=10)
+    user_tracks = user.fetch_recent_tracks(limit=16)
     matched_tracks = match_images_to_tracks(user_tracks)
 
     # 🔍 Debugging: print matched artwork URLs
@@ -73,18 +73,6 @@ def collage():
     # Render using Jinja2 template
     return render_template("collage.html", matched_tracks=matched_tracks)
 
-
-    #sp = spotipy.Spotify(auth=token_info['access_token'])
-    #results = sp.current_user_recently_played(limit=40)
-    #tracks = []
-    #for item in results['items']:
-     #   track = item['track']
-      #  tracks.append(f"{track['name']} by {track['artists'][0]['name']}")
-
-    #return "<br>".join(tracks)
-
-
-#Will need a /collage where we generate and show the image collage 
 
 
 if __name__ == '__main__':

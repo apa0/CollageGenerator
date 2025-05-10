@@ -72,7 +72,13 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_
 
     return matched_tracks
 
-
+# PLACEHOLDER: Now i need to take care of duplicate artwork being matched (do averages with top 3 pallete colors)
+# I also want to later expand the size of the collage, aka right now we are only doing 10 artworks since we only take 10 tracks
+# so we could add some logic to ask the person how far back we want to go in their listening history
+# Also we could ask user if they want us to analyze their playlist, recent tracks, etc. give them options
+# And of course, continue to expand on the dataset, instead of 100, go up to all of it!
+# need to handle cases of SAME ALBUM??? randomness could help, but we want to maybe do something more meaningful
+# Go by title?
 
 #Can later add a function the allow user to save or download their image collage
 
