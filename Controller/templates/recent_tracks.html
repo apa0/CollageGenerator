@@ -1,0 +1,29 @@
+<!-- templates/recent_tracks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Tracks</title>
+</head>
+<body>
+    <h2>Recent Tracks with Color Analysis</h2>
+    {% for track in recent_music %}
+        <div style="margin-bottom: 30px;">
+            <img src="{{ track.album_image_url }}" style="width: 100px;"><br>
+            <strong>{{ track.name }}</strong> by {{ track.artist }}<br>
+            Genre: {{ track.genres }}<br>  <!-- Display genre here -->
+            Dominant Color:
+            <div style="width: 20px; height: 20px; background-color: rgb{{ track.dominant_color }}; display: inline-block;"></div>
+            {{ track.dominant_color }}<br>
+            Color Palette:<br>
+            {% for color in track.color_palette %}
+                <div style="width: 20px; height: 20px; background-color: rgb{{ color }}; display: inline-block; margin-right: 5px;"></div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    <form action="/collage" method="get">
+        <button type="submit" style="padding: 10px 20px; font-size: 16px;">🎨 Generate Collage</button>
+    </form>
+</body>
+</html>

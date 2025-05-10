@@ -54,29 +54,7 @@ def recent_tracks():
     user = SpotifyUser(token_info)
     recent_music = user.fetch_recent_tracks(limit=10)
 
-
-
-    # Build a simple HTML display of track info + colors
-    html = "<h2>Recent Tracks with Color Analysis</h2>"
-    for track in recent_music:
-        html += f"""
-                <div style='margin-bottom: 30px;'>
-                    <img src="{track['album_image_url']}" style="width: 100px;"><br>
-                    <strong>{track['name']}</strong> by {track['artist']}<br>
-                    Genre: {track['genres']}<br>  <!-- Display genre here -->
-                    Dominant Color: <div style='width: 20px; height: 20px; background-color: rgb{track['dominant_color']}; display: inline-block;'></div> {track['dominant_color']}<br>
-                    Color Palette:<br>
-            """
-        for color in track['color_palette']:
-            html += f"<div style='width: 20px; height: 20px; background-color: rgb{color}; display: inline-block; margin-right: 5px;'></div>"
-        html += "</div>"
-    html += """
-        <form action="/collage" method="get">
-            <button type="submit" style="padding: 10px 20px; font-size: 16px;">🎨 Generate Collage</button>
-        </form>
-    """
-
-    return html
+    return render_template('recent_tracks.html', recent_music=recent_music)
 
 @app.route('/collage')
 def collage():
