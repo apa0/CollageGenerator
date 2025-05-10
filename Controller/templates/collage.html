@@ -34,7 +34,7 @@
     <div class="art-grid">
         {% for track in matched_tracks %}
             {% if track.matched_artwork %}
-                <img src="{{ track.matched_artwork }}" alt="Artwork">
+                <img src="{{ track.matched_artwork.image_url }}" alt="{{ track.matched_artwork.title }}">
             {% endif %}
         {% endfor %}
     </div>
