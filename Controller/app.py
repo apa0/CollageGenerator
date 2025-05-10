@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, session, url_for
+from flask import Flask, request, redirect, session, url_for, render_template
 from spotipy.oauth2 import SpotifyOAuth
 import os
 from dotenv import load_dotenv
@@ -87,9 +87,9 @@ def collage():
     user = SpotifyUser(token_info)
     user_tracks = user.fetch_recent_tracks(limit=10)
     matched_tracks = match_images_to_tracks(user_tracks)
-    collage_html=generate_collage_html(matched_tracks)
 
-    return collage_html
+    # Render using Jinja2 template
+    return render_template("collage.html", matched_tracks=matched_tracks)
 
 
     #sp = spotipy.Spotify(auth=token_info['access_token'])

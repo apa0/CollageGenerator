@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Track-to-Art Collage</title>
+</head>
+<body>
+    <h2>Track-to-Art Collage</h2>
+    {% for track in tracks %}
+        <div style='margin-bottom: 30px;'>
+            <img src="{{ track.album_image_url }}" style="width: 100px;"><br>
+            <strong>{{ track.name }}</strong> by {{ track.artist }}<br>
+            Dominant Color:
+            <div style='width: 20px; height: 20px; background-color: {{ track.dominant_color }}; display: inline-block;'></div>
+            {{ track.dominant_color }}<br>
+
+            {% if track.matched_artwork %}
+                Matched Artwork:<br>
+                <img src="{{ track.matched_artwork }}" style="width: 150px;"><br>
+            {% else %}
+                No artwork matched.<br>
+            {% endif %}
+
+            <div style='margin-top: 10px;'>Palette:<br>
+                {% for color in track.color_palette %}
+                    <div style='width: 20px; height: 20px; background-color: {{ color }}; display: inline-block; margin-right: 5px;'></div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
