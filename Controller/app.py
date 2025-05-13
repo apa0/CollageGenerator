@@ -33,7 +33,7 @@ def get_spotify_user():
 def index():
     sp_oauth = SpotifyOAuth(scope=scope)
     auth_url = sp_oauth.get_authorize_url()
-    return f'<a href="{auth_url}">Login with Spotify</a>'
+    return render_template("homepage.html", auth_url=auth_url)
 
 #Handles the result of a redirect from Spotify --> right now its after the authentication
 @app.route('/callback')
@@ -71,3 +71,8 @@ def collage():
         return render_template("collage.html", matched_tracks=matched_tracks)
 
     return user
+
+
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5001)
