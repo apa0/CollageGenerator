@@ -1,29 +1,92 @@
-<!-- templates/recent_tracks.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recent Tracks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        .grid-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .track-card {
+            width: 180px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        .color-box, .palette-color {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            margin: 2px;
+            border-radius: 4px;
+        }
+        .generate-btn {
+            display: block;
+            margin: 40px auto 0;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #1db954;
+            color: white;
+            border-radius: 8px;
+        }
+        .generate-btn:hover {
+            background-color: #14833b;
+        }
+    </style>
+     <style>
+        .spotify-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #1DB954;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h2>Recent Tracks with Color Analysis</h2>
-    {% for track in recent_music %}
-        <div style="margin-bottom: 30px;">
-            <img src="{{ track.album_image_url }}" style="width: 100px;"><br>
-            <strong>{{ track.name }}</strong> by {{ track.artist }}<br>
-            Genre: {{ track.genres }}<br>  <!-- Display genre here -->
-            Dominant Color:
-            <div style="width: 20px; height: 20px; background-color: rgb{{ track.dominant_color }}; display: inline-block;"></div>
-            {{ track.dominant_color }}<br>
-            Color Palette:<br>
-            {% for color in track.color_palette %}
-                <div style="width: 20px; height: 20px; background-color: rgb{{ color }}; display: inline-block; margin-right: 5px;"></div>
-            {% endfor %}
+    <div style="text-align: center; margin-bottom: 30px;">
+        <h2>Recent Track Color Analysis</h2>
+        <p>Scroll below or click the button to generate your personalized art collage! </p>
+        <form action="/collage" method="get" style="margin-top: 15px;">
+           <button type="submit" class="spotify-button">🎨 Generate Collage</button>
+        </form>
+    </div>
+    <div class="grid-container">
+        {% for track in recent_music %}
+        <div class="track-card">
+            <img src="{{ track.album_image_url }}" style="width: 100px; border-radius: 5px;"><br>
+            <strong>{{ track.name }}</strong><br>
+            <small>by {{ track.artist }}</small><br>
+            <small><em>{{ track.genres }}</em></small><br>
+            <div>
+                <span style="font-size: 12px;">Dominant:</span>
+                <div class="color-box" style="background-color: rgb{{ track.dominant_color }};"></div>
+            </div>
+            <div>
+                <span style="font-size: 12px;">Palette:</span><br>
+                {% for color in track.color_palette %}
+                    <div class="palette-color" style="background-color: rgb{{ color }};"></div>
+                {% endfor %}
+            </div>
         </div>
-    {% endfor %}
-    <form action="/collage" method="get">
-        <button type="submit" style="padding: 10px 20px; font-size: 16px;">🎨 Generate Collage</button>
-    </form>
+        {% endfor %}
+    </div>
 </body>
 </html>
