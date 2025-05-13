@@ -20,7 +20,13 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY")
 
-
+#Helper function to instantiate SpotifyUser
+def get_spotify_user():
+    token_info = session.get("token_info", None)
+    if not token_info:
+        # let the routes determine what to do if Spotify user is None
+        return redirect(url_for('index'))
+    return SpotifyUser(token_info)
 
 #Handles authentication, when the user initially visits the URL
 @app.route('/')
@@ -46,34 +52,22 @@ def callback():
 #Grabbing recent listened to tracks from Spotify
 @app.route('/recent')
 def recent_tracks():
-    token_info = session.get("token_info", None)
-    if not token_info:
-        return redirect(url_for('index'))
-
-    #TESTING NEW LOGIC TO GATHER USER DATA:
-    user = SpotifyUser(token_info)
-    recent_music = user.fetch_recent_tracks(limit=16)
-
-    return render_template('recent_tracks.html', recent_music=recent_music)
+    user = get_spotify_user()
+    if isinstance(user, SpotifyUser):
+        recent_music = user.fetch_recent_tracks(limit=16)
+        return render_template('recent_tracks.html', recent_music=recent_music)
+    #Redirect
+    return user
 
 @app.route('/collage')
 def collage():
-    # Factor out common code
-    token_info = session.get("token_info", None)
-    if not token_info:
-        return redirect(url_for('index'))
-    user = SpotifyUser(token_info)
-    user_tracks = user.fetch_recent_tracks(limit=16)
-    matched_tracks = match_images_to_tracks(user_tracks)
+    user = get_spotify_user()
+    if isinstance(user, SpotifyUser):
+        user_tracks = user.fetch_recent_tracks(limit=16)
+        matched_tracks = match_images_to_tracks(user_tracks)
+    # Debugging: print matched artwork URLs
+        for i, track in enumerate(matched_tracks):
+            print(f"Track {i}: {track.get('name', 'N/A')} - matched_artwork: {track.get('matched_artwork')}")
+        return render_template("collage.html", matched_tracks=matched_tracks)
 
-    # 🔍 Debugging: print matched artwork URLs
-    for i, track in enumerate(matched_tracks):
-        print(f"Track {i}: {track.get('name', 'N/A')} - matched_artwork: {track.get('matched_artwork')}")
-
-    # Render using Jinja2 template
-    return render_template("collage.html", matched_tracks=matched_tracks)
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    return user
