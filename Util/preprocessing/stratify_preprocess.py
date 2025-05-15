@@ -7,7 +7,7 @@ from colorthief import ColorThief
 # New preprocessing script, removes duplicate URLS, stratifying by style to ensure sample is diverse
 
 # Load the CSV file
-df = pd.read_csv("data/wikiart_scraped.csv")
+df = pd.read_csv("../data/wikiart_scraped.csv")
 df.columns = df.columns.str.strip()
 
 # Drop rows without image links
@@ -55,7 +55,7 @@ for _, row in sampled_df.iterrows():
         print(f"⚠️ Skipped '{row['Artwork']}' due to error: {e}")
 
 # Save processed artworks with color data
-with open("data/wikiart_stratify_processed.json", "w") as f:
+with open("../data/wikiart_stratify_processed.json", "w") as f:
     json.dump(artworks, f, indent=2)
 
 # Also save the stratified raw data without color info (optional)

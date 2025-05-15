@@ -64,7 +64,7 @@
     <div style="text-align: center; margin-bottom: 30px;">
         <h2>Recent Track Color Analysis</h2>
         <p>Scroll below or click the button to generate your personalized art collage! </p>
-        <form action="/collage" method="get" style="margin-top: 15px;">
+        <form action="{{ url_for('collage.collage') }}" method="get">
            <button type="submit" class="spotify-button">🎨 Generate Collage</button>
         </form>
     </div>
