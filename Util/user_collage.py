@@ -5,6 +5,8 @@
 
 import json
 import random
+import ast
+from Model.collage_cache import CollageCache
 
 
 
@@ -16,8 +18,6 @@ import random
                 # For dominant color grouping, we can just round our RGB values to have a bit of a looser grouping and more possibility
     # 3. Once we have narrowed this down, we can use the top three colors in the pallete to give us the closest match
     # 4. Can later integrate better algorithms like KD-Trees or ANN (approximate nearest neighbors)
-
-import ast
 
 def parse_color_key(color_key):
     try:
@@ -54,22 +54,63 @@ def get_closest_color_bucket(track_color, color_buckets):
     return best_bucket
 
 def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_color_buckets.json'):
+    db = CollageCache()
+    matched_tracks = []
+    
+    print("\n=== Starting match_images_to_tracks ===")
+    print(f"Number of tracks to process: {len(user_tracks)}")
+    
+    # Load color buckets only once
     with open(bucket_file) as f:
         color_buckets = json.load(f)
+        print(f"Loaded {len(color_buckets)} color buckets")
 
-    matched_tracks = []
     for track in user_tracks:
-        dom_color = track['dominant_color']  # already an RGB tuple
+        print(f"\nProcessing track: {track.get('name')}")
+        print(f"Track ID: {track.get('id')}")
+        
+        # Check cache first
+        cached_artwork = db.get_cached_wikiart_match(track['id'])
+        print(f"Cache check result: {cached_artwork}")
+        
+        if cached_artwork:
+            print("Using cached artwork")
+            track['matched_artwork'] = cached_artwork
+            matched_tracks.append(track)
+            continue
+
+        # If not in cache, perform matching
+        print("No cache found, performing new match")
+        dom_color = track['dominant_color']
+        print(f"Dominant color: {dom_color}")
+        
         best_bucket = get_closest_color_bucket(dom_color, color_buckets)
+        print(f"Best color bucket: {best_bucket}")
 
         if best_bucket and color_buckets[best_bucket]:
             matched_art = random.choice(color_buckets[best_bucket])
-            track['matched_artwork'] = matched_art
+            print(f"Selected artwork: {matched_art['title']}")
+            print(f"Artwork URL: {matched_art['image_url']}")
+            
+            # Store ONLY the image URL
+            image_url = matched_art['image_url']
+            track['matched_artwork'] = image_url
+            print(f"Stored URL in track: {track['matched_artwork']}")
+            
+            # Cache ONLY the image URL
+            db.cache_wikiart_match(track['id'], image_url, 1.0)
+            print("Cached the match")
         else:
+            print("No matching artwork found")
             track['matched_artwork'] = None
 
         matched_tracks.append(track)
 
+    print("\n=== Final matched tracks ===")
+    for track in matched_tracks:
+        print(f"\nTrack: {track.get('name')}")
+        print(f"Matched artwork: {track.get('matched_artwork')}")
+    
     return matched_tracks
 
 # PLACEHOLDER: Now i need to take care of duplicate artwork being matched (do averages with top 3 pallete colors)

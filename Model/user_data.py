@@ -13,6 +13,7 @@ import requests
 
 import spotipy
 from colorthief import ColorThief
+from Model.collage_cache import CollageCache
 
 
 
@@ -22,10 +23,19 @@ class SpotifyUser:
         self.token_info = token_info
         self.sp = spotipy.Spotify(auth=token_info['access_token'])
         self.recent_tracks = []
+        self.db = CollageCache()
+        # Get user ID for caching, where each user has their own cache
+        self.user_id = self.sp.current_user()['id']  
 
     #Limit 10 for now, testing
     def fetch_recent_tracks(self, limit=10):
-        #Calling Spotify API to get recent tracks
+        # Try to get cached tracks first
+        cached_tracks = self.db.get_cached_tracks(self.user_id)
+        if cached_tracks:
+            self.recent_tracks = cached_tracks
+            return self.recent_tracks
+
+        # If no cache, fetch from Spotify
         results = self.sp.current_user_recently_played(limit=limit)
         self.recent_tracks = []
 
@@ -39,7 +49,6 @@ class SpotifyUser:
             artist_info = self.sp.artist(artist_id)
             genres = artist_info.get('genres', [])
 
-
             # If genres is empty or None, set it to 'Unknown'
             if not genres:
                 genres = ['Unknown']
@@ -51,8 +60,12 @@ class SpotifyUser:
                 'album_image_url': track['album']['images'][0]['url'],
                 'genres': genres[0]
             })
+
         # Call helper function to append color analysis of album cover
         self.fetch_color_analysis()
+        
+        # Cache the processed tracks
+        self.db.cache_tracks(self.user_id, self.recent_tracks)
 
         return self.recent_tracks
 
@@ -60,6 +73,16 @@ class SpotifyUser:
     # Potential looking into: using library like colormath to infer mood of the song using color theory of album
     def fetch_color_analysis(self):
         for track in self.recent_tracks:
+            # Check if we already have color analysis in cache
+            cached_track = next((t for t in self.db.get_cached_tracks(self.user_id) or [] 
+                               if t['id'] == track['id']), None)
+            
+            if cached_track and 'dominant_color' in cached_track:
+                track['dominant_color'] = cached_track['dominant_color']
+                track['color_palette'] = cached_track['color_palette']
+                continue
+
+            # If not in cache, process the image
             album_cover = requests.get(track['album_image_url'])
             img = BytesIO(album_cover.content)
             color_thief = ColorThief(img)

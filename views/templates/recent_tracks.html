@@ -77,12 +77,12 @@
             <small><em>{{ track.genres }}</em></small><br>
             <div>
                 <span style="font-size: 12px;">Dominant:</span>
-                <div class="color-box" style="background-color: rgb{{ track.dominant_color }};"></div>
+                <div class="color-box" style="background-color: rgb({{ track.dominant_color[0] }}, {{ track.dominant_color[1] }}, {{ track.dominant_color[2] }});"></div>
             </div>
             <div>
                 <span style="font-size: 12px;">Palette:</span><br>
                 {% for color in track.color_palette %}
-                    <div class="palette-color" style="background-color: rgb{{ color }};"></div>
+                    <div class="palette-color" style="background-color: rgb({{ color[0] }}, {{ color[1] }}, {{ color[2] }});"></div>
                 {% endfor %}
             </div>
         </div>

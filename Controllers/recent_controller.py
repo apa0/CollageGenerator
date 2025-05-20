@@ -16,7 +16,15 @@ def recent_tracks():
         return user
     # user was redirected due to invalid session
 
-
     recent_music = user.fetch_recent_tracks()
+    
+    # Debug printing
+    print("\nDEBUG: Recent Tracks Data:")
+    for track in recent_music:
+        print(f"\nTrack: {track.get('name')}")
+        print(f"Dominant Color: {track.get('dominant_color')}")
+        print(f"Color Palette: {track.get('color_palette')}")
+        print("---")
+    
     return render_template("recent_tracks.html", recent_music=recent_music)
 

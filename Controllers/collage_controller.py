@@ -1,5 +1,5 @@
-
 from flask import Blueprint, render_template
+import json
 
 from Model.user_data import SpotifyUser
 from Util.spotify_helper import get_spotify_user
@@ -17,9 +17,14 @@ def collage():
     if isinstance(user, SpotifyUser):
         user_tracks = user.fetch_recent_tracks(limit=16)
         matched_tracks = match_images_to_tracks(user_tracks)
-    # Debugging: print matched artwork URLs
-        for i, track in enumerate(matched_tracks):
-            print(f"Track {i}: {track.get('name', 'N/A')} - matched_artwork: {track.get('matched_artwork')}")
+        
+        # Debug printing
+        print("\nDEBUG: Matched Tracks Data:")
+        for track in matched_tracks:
+            print(f"Track: {track.get('name')}")
+            print(f"Matched Artwork: {json.dumps(track.get('matched_artwork'), indent=2)}")
+            print("---")
+            
         return render_template("collage.html", matched_tracks=matched_tracks)
 
     return user
