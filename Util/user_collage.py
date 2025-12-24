@@ -53,9 +53,46 @@ def get_closest_color_bucket(track_color, color_buckets):
             best_bucket = bucket_key
     return best_bucket
 
+# Function to get nearby color buckets when the primary bucket is exhausted
+def get_nearby_color_buckets(target_color, color_buckets, max_distance=50, limit=5):
+    """
+    Returns a list of bucket keys sorted by distance from target_color
+    Useful as fallback when primary bucket has no available artwork
+    """
+    r1, g1, b1 = hex_to_rgb(target_color)
+    bucket_distances = []
+    
+    for bucket_key in color_buckets:
+        try:
+            r2, g2, b2 = parse_color_key(bucket_key)
+            dist_sq = (r1 - r2)**2 + (g1 - g2)**2 + (b1 - b2)**2
+            distance = dist_sq ** 0.5  # actual Euclidean distance
+            
+            if distance <= max_distance:
+                bucket_distances.append((bucket_key, distance))
+        except ValueError:
+            continue
+    
+    # Sort by distance and return top N buckets
+    bucket_distances.sort(key=lambda x: x[1])
+    return [bucket for bucket, _ in bucket_distances[:limit]]
+
+# Function to select unique artwork from a bucket, avoiding duplicates
+def select_unique_artwork(bucket, used_artworks):
+    """
+    Selects a random artwork from bucket that hasn't been used yet
+    Returns None if all artwork in bucket has been used
+    """
+    available_art = [art for art in bucket if art['image_url'] not in used_artworks]
+    
+    if available_art:
+        return random.choice(available_art)
+    return None
+
 def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_color_buckets.json'):
     db = CollageCache()
     matched_tracks = []
+    used_artworks = set()  # Track used artwork URLs to avoid duplicates
     
     print("\n=== Starting match_images_to_tracks ===")
     print(f"Number of tracks to process: {len(user_tracks)}")
@@ -76,6 +113,7 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_
         if cached_artwork:
             print("Using cached artwork")
             track['matched_artwork'] = cached_artwork
+            used_artworks.add(cached_artwork)  # Track cached artwork too
             matched_tracks.append(track)
             continue
 
@@ -83,24 +121,42 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_
         print("No cache found, performing new match")
         dom_color = track['dominant_color']
         print(f"Dominant color: {dom_color}")
-        
+        # Try to find a unique artwork match
+        matched_art = None
         best_bucket = get_closest_color_bucket(dom_color, color_buckets)
         print(f"Best color bucket: {best_bucket}")
 
+        # First, try the best matching bucket
         if best_bucket and color_buckets[best_bucket]:
-            matched_art = random.choice(color_buckets[best_bucket])
-            print(f"Selected artwork: {matched_art['title']}")
-            print(f"Artwork URL: {matched_art['image_url']}")
-            
-            # Store ONLY the image URL
+            matched_art = select_unique_artwork(color_buckets[best_bucket], used_artworks)
+            if matched_art:
+                print(f"✓ Selected unique artwork from best bucket: {matched_art['title']}")
+            else:
+                print("⚠ Best bucket exhausted, searching nearby buckets...")
+                
+                # Fallback: search nearby buckets
+                nearby_buckets = get_nearby_color_buckets(dom_color, color_buckets, max_distance=80, limit=10)
+                print(f"Found {len(nearby_buckets)} nearby buckets to search")
+                
+                for nearby_bucket in nearby_buckets:
+                    if nearby_bucket != best_bucket and color_buckets[nearby_bucket]:
+                        matched_art = select_unique_artwork(color_buckets[nearby_bucket], used_artworks)
+                        if matched_art:
+                            print(f" Selected artwork from nearby bucket: {matched_art['title']}")
+                            break
+        
+        # If we found a match, store it
+        if matched_art:
             image_url = matched_art['image_url']
             track['matched_artwork'] = image_url
-            print(f"Stored URL in track: {track['matched_artwork']}")
+            used_artworks.add(image_url)  # Mark as used
+            print(f"Artwork URL: {image_url}")
             
-            # Cache ONLY the image URL
+            # Cache the match
             db.cache_wikiart_match(track['id'], image_url, 1.0)
             print("Cached the match")
         else:
+            print(" No unique artwork found after searching all buckets")
             print("No matching artwork found")
             track['matched_artwork'] = None
 
