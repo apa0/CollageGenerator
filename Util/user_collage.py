@@ -110,12 +110,16 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_
         cached_artwork = db.get_cached_wikiart_match(track['id'])
         print(f"Cache check result: {cached_artwork}")
         
-        if cached_artwork:
-            print("Using cached artwork")
+        # Only use cache if the artwork hasn't been used already
+        if cached_artwork and cached_artwork not in used_artworks:
+            print(" Using cached artwork (unique)")
             track['matched_artwork'] = cached_artwork
-            used_artworks.add(cached_artwork)  # Track cached artwork too
+            used_artworks.add(cached_artwork)
             matched_tracks.append(track)
             continue
+        elif cached_artwork and cached_artwork in used_artworks:
+            print(" Cached artwork is duplicate, will find new match")
+            # Don't use the duplicate, fall through to matching logic
 
         # If not in cache, perform matching
         print("No cache found, performing new match")
