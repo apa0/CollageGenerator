@@ -48,6 +48,15 @@ class CollageCache:
                     PRIMARY KEY (track_id)
                 )
             ''')
+            
+            # Migration: Add timestamp column if it doesn't exist
+            try:
+                cursor.execute("SELECT timestamp FROM wikiart_matches LIMIT 1")
+            except sqlite3.OperationalError:
+                print("  Migrating database: Adding timestamp column to wikiart_matches")
+                cursor.execute("ALTER TABLE wikiart_matches ADD COLUMN timestamp TEXT")
+                conn.commit()
+                print("✓ Migration complete")
     
     """
     Caches a user's Spotify tracks and their associated data
