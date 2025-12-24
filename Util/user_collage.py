@@ -35,8 +35,66 @@ def hex_to_rgb(hexstr):
     else:
         raise ValueError(f"Unexpected color format: {hexstr}")
 
+# Function to calculate color distance (Euclidean distance in RGB space)
+def color_distance(color1, color2):
+    """Calculate Euclidean distance between two RGB colors"""
+    r1, g1, b1 = hex_to_rgb(color1)
+    r2, g2, b2 = hex_to_rgb(color2)
+    return ((r1 - r2)**2 + (g1 - g2)**2 + (b1 - b2)**2) ** 0.5
+
+# Function that uses weighted palette matching to find the best bucket
+def get_closest_color_bucket_with_palette(dominant_color, color_palette, color_buckets):
+    """
+    Enhanced matching using the full color palette with weighted scoring
+    - Dominant color: 70% weight (increased to prioritize it more)
+    - Palette colors: 30% distributed across remaining colors (declining weights)
+    
+    This ensures dominant color has strong influence while still considering overall palette
+    """
+    min_score = float('inf')
+    best_bucket = None
+    best_bucket_color = None
+    
+    # Weight distribution: dominant gets 0.70, then 0.12, 0.09, 0.06, 0.03 for palette
+    weights = [0.70, 0.12, 0.09, 0.06, 0.03]
+    
+    # Build color list: dominant + top palette colors (excluding dominant if it's in palette)
+    track_colors = [dominant_color]
+    for pal_color in color_palette[:5]:  # Take top 5 from palette
+        if pal_color != dominant_color:  # Avoid duplicate
+            track_colors.append(pal_color)
+    
+    # Normalize weights if we have fewer colors
+    weights = weights[:len(track_colors)]
+    weight_sum = sum(weights)
+    weights = [w / weight_sum for w in weights]
+    
+    for bucket_key in color_buckets:
+        try:
+            bucket_color = parse_color_key(bucket_key)
+            
+            # Calculate weighted distance
+            weighted_distance = 0.0
+            for track_color, weight in zip(track_colors, weights):
+                distance = color_distance(track_color, bucket_color)
+                weighted_distance += distance * weight
+            
+            if weighted_distance < min_score:
+                min_score = weighted_distance
+                best_bucket = bucket_key
+                best_bucket_color = bucket_color
+                
+        except ValueError:
+            continue
+    
+    # Debug: print the selected bucket color
+    if best_bucket_color:
+        print(f"  → Matched bucket RGB: {best_bucket_color} (score: {min_score:.2f})")
+    
+    return best_bucket
+
 #Function that uses Euclidean distance to find the best bucket match in WikiArt for a track
-# Right now only using the dominant color to determine best bucket, later can incorporate pallates for specific image
+# Legacy function - kept for backward compatibility
 def get_closest_color_bucket(track_color, color_buckets):
     r1, g1, b1 = hex_to_rgb(track_color)
     min_dist_sq = float('inf')
@@ -124,11 +182,14 @@ def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_
         # If not in cache, perform matching
         print("No cache found, performing new match")
         dom_color = track['dominant_color']
+        color_palette = track.get('color_palette', [])
         print(f"Dominant color: {dom_color}")
-        # Try to find a unique artwork match
+        print(f"Palette: {color_palette[:3]}...")  # Show first 3 colors
+        
+        # Try to find a unique artwork match using full palette
         matched_art = None
-        best_bucket = get_closest_color_bucket(dom_color, color_buckets)
-        print(f"Best color bucket: {best_bucket}")
+        best_bucket = get_closest_color_bucket_with_palette(dom_color, color_palette, color_buckets)
+        print(f"Best color bucket (palette-matched): {best_bucket}")
 
         # First, try the best matching bucket
         if best_bucket and color_buckets[best_bucket]:
