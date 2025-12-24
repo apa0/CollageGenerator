@@ -28,12 +28,13 @@ class SpotifyUser:
         self.user_id = self.sp.current_user()['id']  
 
     #Limit 10 for now, testing
-    def fetch_recent_tracks(self, limit=10):
-        # Try to get cached tracks first
-        cached_tracks = self.db.get_cached_tracks(self.user_id)
-        if cached_tracks:
-            self.recent_tracks = cached_tracks
-            return self.recent_tracks
+    def fetch_recent_tracks(self, limit=10, force_refresh=False):
+        # Try to get cached tracks first (unless force refresh)
+        if not force_refresh:
+            cached_tracks = self.db.get_cached_tracks(self.user_id, max_age_hours=1)
+            if cached_tracks:
+                self.recent_tracks = cached_tracks
+                return self.recent_tracks
 
         # If no cache, fetch from Spotify
         results = self.sp.current_user_recently_played(limit=limit)

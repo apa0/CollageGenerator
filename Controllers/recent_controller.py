@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 
 from Model.user_data import SpotifyUser
 from Util.spotify_helper import get_spotify_user
@@ -16,7 +16,9 @@ def recent_tracks():
         return user
     # user was redirected due to invalid session
 
-    recent_music = user.fetch_recent_tracks()
+    # Check if user requested a refresh
+    force_refresh = request.args.get('refresh', 'false').lower() == 'true'
+    recent_music = user.fetch_recent_tracks(force_refresh=force_refresh)
     
     # Debug printing
     print("\nDEBUG: Recent Tracks Data:")
