@@ -25,3 +25,5 @@ env/
 Thumbs.db
 
 .cache
+
+Util/data/
