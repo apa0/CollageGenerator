@@ -147,7 +147,7 @@ def select_unique_artwork(bucket, used_artworks):
         return random.choice(available_art)
     return None
 
-def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_stratify_color_buckets.json'):
+def match_images_to_tracks(user_tracks, bucket_file='Util/data/wikiart_expanded_color_buckets.json'):
     db = CollageCache()
     matched_tracks = []
     used_artworks = set()  # Track used artwork URLs to avoid duplicates
